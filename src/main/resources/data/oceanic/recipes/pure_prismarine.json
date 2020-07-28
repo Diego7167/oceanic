@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "minecraft:prismarine_crystals"
+  },
+  "result": "oceanic:pure_prismarine",
+  "experience": 0.7,
+  "cookingtime": 200
+}
