@@ -20,6 +20,7 @@ class Oceanic: ModInitializer {
     override fun onInitialize() {
         println("Wield the wonders of the sea")
 
+        // Register Items
         Registry.register(Registry.ITEM, Identifier("oceanic", "pure_prismarine"), purePrismarine)
     }
 }
