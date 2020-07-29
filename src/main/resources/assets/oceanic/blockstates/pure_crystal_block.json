@@ -1,5 +1,8 @@
 {
   "variants": {
-    "": {"model": "oceanic:block/pure_crystal_block"}
+    "facing=north": {"model": "oceanic:block/pure_crystal_block"},
+    "facing=east":  {"model": "oceanic:block/pure_crystal_block", "y": 90},
+    "facing=south": {"model": "oceanic:block/pure_crystal_block", "y": 180},
+    "facing=west":  {"model": "oceanic:block/pure_crystal_block", "y":  270}
   }
 }
