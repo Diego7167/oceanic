@@ -13,7 +13,7 @@ import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
-class PurePrismarineLantern(settings: Settings): Block(settings.lightLevel(fun(state): Int = if(state.get(this.lit)) {15} else {0})) {
+class PurePrismarineLantern(settings: Settings): Block(settings.lightLevel(fun(state): Int = if(state.get(this.lit)) {15} else {0})) { // This part controls the light
     // Block state
     companion object Companion {
         @JvmStatic
@@ -29,19 +29,24 @@ class PurePrismarineLantern(settings: Settings): Block(settings.lightLevel(fun(s
     }
 
     override fun onUse(state: BlockState?, world: World?, pos: BlockPos?, player: PlayerEntity?, hand: Hand?, hit: BlockHitResult?): ActionResult {
-        world?.setBlockState(pos, state?.with(lit, !state.get(lit)))
+        val newState = !state!!.get(lit) // The new state
+        world?.setBlockState(pos, state.with(lit, newState))
 
         if(!world!!.isClient) {
             world.playSound(
                     null,
                     pos,
-                    SoundEvents.BLOCK_LEVER_CLICK,
+                    if (newState) { // Turning on
+                        SoundEvents.BLOCK_CONDUIT_ACTIVATE
+                    } else {        // Turning off
+                        SoundEvents.BLOCK_BEACON_DEACTIVATE
+                    },
                     SoundCategory.BLOCKS,
                     0.5f,
-                    1f
+                    1.5f
             )
         } else {
-            println("State: ${state!!.get(lit)}")
+            println("State: ${state.get(lit)}")
         }
 
         return ActionResult.SUCCESS
