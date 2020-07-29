@@ -1,26 +1,50 @@
 package com.github.diego7167
 
 import net.fabricmc.api.ModInitializer
+import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
+import net.minecraft.block.Block
+import net.minecraft.block.Material
+import net.minecraft.item.BlockItem
 import net.minecraft.item.Item
 import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemStack
+import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.util.Identifier
 import net.minecraft.util.registry.Registry
 
 @Suppress("unused")
 class Oceanic: ModInitializer {
-    private val oceanicItemGroup: ItemGroup = FabricItemGroupBuilder.build(
-            Identifier("oceanic", "general"),
-            fun(): ItemStack = ItemStack(purePrismarine)
-    )
+	// Item group
+	private val oceanicItemGroup: ItemGroup = FabricItemGroupBuilder.build(
+		Identifier("oceanic", "general"),
+		fun(): ItemStack = ItemStack(purePrismarine)
+	)
 
-    private val purePrismarine = Item(Item.Settings().group(oceanicItemGroup))
+	// Items
+	private val purePrismarine = Item(Item.Settings().group(oceanicItemGroup))
+	private val pureCrystal = Item(Item.Settings().group(oceanicItemGroup))
 
-    override fun onInitialize() {
-        println("Wield the wonders of the sea")
+	// Block
+	private val purePrismarineBlock = Block(FabricBlockSettings.of(Material.STONE).hardness(5.0f))
+	private val pureCrystalBlock = Block(FabricBlockSettings.of(Material.METAL).hardness(4.0f))
+	private val purePrismarineLantern = Block(FabricBlockSettings.of(Material.GLASS).hardness(0.5f).lightLevel(15).sounds(BlockSoundGroup.GLASS))
 
-        // Register Items
-        Registry.register(Registry.ITEM, Identifier("oceanic", "pure_prismarine"), purePrismarine)
-    }
+	// Init
+	override fun onInitialize() {
+		println("Wield the wonders of the sea")
+
+		// Register Items
+		Registry.register(Registry.ITEM, Identifier("oceanic", "pure_prismarine"), purePrismarine)
+		Registry.register(Registry.ITEM, Identifier("oceanic", "pure_crystal"), pureCrystal)
+
+		// Register Blocks
+		Registry.register(Registry.BLOCK, Identifier("oceanic", "pure_prismarine_block"), purePrismarineBlock)
+		Registry.register(Registry.BLOCK, Identifier("oceanic", "pure_crystal_block"), pureCrystalBlock)
+		Registry.register(Registry.BLOCK, Identifier("oceanic", "pure_prismarine_lantern"), purePrismarineLantern)
+		// And ItemBlocks
+		Registry.register(Registry.ITEM, Identifier("oceanic", "pure_prismarine_block"), BlockItem(purePrismarineBlock, Item.Settings().group(oceanicItemGroup)))
+		Registry.register(Registry.ITEM, Identifier("oceanic", "pure_crystal_block"), BlockItem(pureCrystalBlock, Item.Settings().group(oceanicItemGroup)))
+		Registry.register(Registry.ITEM, Identifier("oceanic", "pure_prismarine_lantern"), BlockItem(purePrismarineLantern, Item.Settings().group(oceanicItemGroup)))
+	}
 }

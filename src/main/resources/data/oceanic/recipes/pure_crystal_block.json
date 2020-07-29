@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "CCC",
+    "CCC"
+  ],
+  "key": {
+    "C": "oceanic:pure_crystal"
+  },
+  "result": {
+    "item": "oceanic:pure_crystal_block"
+  }
+}
