@@ -1,8 +1,9 @@
 {
+  "itemGroup.oceanic.general": "Oceanic",
+
   "item.oceanic.pure_prismarine": "Pure prismarine",
   "item.oceanic.pure_crystal": "Pure crystal",
-
-  "itemGroup.oceanic.general": "Oceanic",
+  "item.oceanic.pure_shard": "Pure shard",
 
   "block.oceanic.pure_prismarine_block": "Block of pure prismarine",
   "block.oceanic.pure_crystal_block": "Block of pure crystal",

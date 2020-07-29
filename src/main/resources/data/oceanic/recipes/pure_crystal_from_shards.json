@@ -6,9 +6,9 @@
     "###"
   ],
   "key": {
-    "#": {"item":  "oceanic:pure_crystal"}
+    "#": {"item":  "oceanic:pure_shard"}
   },
   "result": {
-    "item": "oceanic:pure_crystal_block"
+    "item": "oceanic:pure_crystal"
   }
 }

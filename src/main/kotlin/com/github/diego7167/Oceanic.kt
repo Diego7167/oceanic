@@ -24,6 +24,7 @@ class Oceanic: ModInitializer {
 	// Items
 	private val purePrismarine = Item(Item.Settings().group(oceanicItemGroup))
 	private val pureCrystal = Item(Item.Settings().group(oceanicItemGroup))
+	private val pureShard = Item(Item.Settings().group(oceanicItemGroup))
 
 	// Block
 	private val purePrismarineBlock = Block(FabricBlockSettings.of(Material.STONE).hardness(5.0f))
@@ -37,6 +38,7 @@ class Oceanic: ModInitializer {
 		// Register Items
 		Registry.register(Registry.ITEM, Identifier("oceanic", "pure_prismarine"), purePrismarine)
 		Registry.register(Registry.ITEM, Identifier("oceanic", "pure_crystal"), pureCrystal)
+		Registry.register(Registry.ITEM, Identifier("oceanic", "pure_shard"), pureShard)
 
 		// Register Blocks
 		Registry.register(Registry.BLOCK, Identifier("oceanic", "pure_prismarine_block"), purePrismarineBlock)
