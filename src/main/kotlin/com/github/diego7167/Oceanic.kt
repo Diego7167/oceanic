@@ -1,5 +1,6 @@
 package com.github.diego7167
 
+import com.github.diego7167.blocks.PurePrismarineLantern
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
@@ -29,7 +30,7 @@ class Oceanic: ModInitializer {
 	// Block
 	private val purePrismarineBlock = Block(FabricBlockSettings.of(Material.STONE).hardness(5.0f))
 	private val pureCrystalBlock = Block(FabricBlockSettings.of(Material.METAL).hardness(4.0f))
-	private val purePrismarineLantern = Block(FabricBlockSettings.of(Material.GLASS).hardness(0.5f).lightLevel(15).sounds(BlockSoundGroup.GLASS))
+	private val purePrismarineLantern = PurePrismarineLantern(FabricBlockSettings.of(Material.GLASS).hardness(0.5f).lightLevel(15).sounds(BlockSoundGroup.GLASS))
 
 	// Init
 	override fun onInitialize() {

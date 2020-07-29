@@ -1,6 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "oceanic:block/pure_prismarine_lantern"
-  }
-}
