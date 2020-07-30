@@ -18,27 +18,27 @@ import net.minecraft.util.registry.Registry
 
 @Suppress("unused")
 class Oceanic: ModInitializer {
-	// Item group
-	private val oceanicItemGroup: ItemGroup = FabricItemGroupBuilder.build(
-		Identifier("oceanic", "general"),
-		fun(): ItemStack = ItemStack(pureCrystal)
-	)
-
-	// Items
-	private val purePrismarine = Item(Item.Settings().group(oceanicItemGroup))
-	private val pureCrystal = Item(Item.Settings().group(oceanicItemGroup))
-	private val pureShard = Item(Item.Settings().group(oceanicItemGroup))
-
-	// Block
-	private val purePrismarineBlock = Block(FabricBlockSettings.of(Material.STONE).hardness(5.0f))
-	private val pureCrystalBlock = PureCrystalBlock(FabricBlockSettings.of(Material.METAL).hardness(4.0f))
-	private val purePrismarineLantern = PurePrismarineLantern(FabricBlockSettings.of(Material.GLASS)
-		.hardness(0.5f)
-		.lightLevel(15)
-		.sounds(BlockSoundGroup.GLASS)
-	)
 	// Ores should be public and companions
-	companion object Ores {
+	companion object Companion {
+		// Item group
+		val oceanicItemGroup: ItemGroup = FabricItemGroupBuilder.build(
+			Identifier("oceanic", "general"),
+			fun(): ItemStack = ItemStack(pureCrystal)
+		)
+
+		// Items
+		val purePrismarine = Item(Item.Settings().group(oceanicItemGroup))
+		val pureCrystal = Item(Item.Settings().group(oceanicItemGroup))
+		val pureShard = Item(Item.Settings().group(oceanicItemGroup))
+
+		// Block
+		val purePrismarineBlock = Block(FabricBlockSettings.of(Material.STONE).hardness(5.0f))
+		val pureCrystalBlock = PureCrystalBlock(FabricBlockSettings.of(Material.METAL).hardness(4.0f))
+		val purePrismarineLantern = PurePrismarineLantern(FabricBlockSettings.of(Material.GLASS)
+			.hardness(0.5f)
+			.lightLevel(15)
+			.sounds(BlockSoundGroup.GLASS)
+		)
 		val shinyGravel = FallingBlock(FabricBlockSettings.of(Material.SOIL).hardness(0.6f).sounds(BlockSoundGroup.SAND))
 	}
 
