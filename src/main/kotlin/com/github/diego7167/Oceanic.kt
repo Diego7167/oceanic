@@ -2,6 +2,7 @@ package com.github.diego7167
 
 import com.github.diego7167.blocks.PureCrystalBlock
 import com.github.diego7167.blocks.PurePrismarineLantern
+import com.github.diego7167.world.OceanBedOreGen
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
@@ -15,6 +16,11 @@ import net.minecraft.item.ItemStack
 import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.util.Identifier
 import net.minecraft.util.registry.Registry
+import net.minecraft.world.biome.Biome
+import net.minecraft.world.gen.GenerationStep
+import net.minecraft.world.gen.decorator.ChanceDecoratorConfig
+import net.minecraft.world.gen.decorator.Decorator
+import net.minecraft.world.gen.feature.DefaultFeatureConfig
 
 @Suppress("unused")
 class Oceanic: ModInitializer {
@@ -61,5 +67,26 @@ class Oceanic: ModInitializer {
 		Registry.register(Registry.ITEM, Identifier("oceanic", "pure_crystal_block"), BlockItem(pureCrystalBlock, Item.Settings().group(oceanicItemGroup)))
 		Registry.register(Registry.ITEM, Identifier("oceanic", "pure_prismarine_lantern"), BlockItem(purePrismarineLantern, Item.Settings().group(oceanicItemGroup)))
 		Registry.register(Registry.ITEM, Identifier("oceanic", "shiny_gravel"), BlockItem(shinyGravel, Item.Settings().group(oceanicItemGroup)))
+
+		// World gen
+		// Features
+		val oceanBedOreGen = Registry.register(
+			Registry.FEATURE,
+			Identifier("oceanic", "ocean_bed_ore_gen"),
+			OceanBedOreGen(DefaultFeatureConfig.CODEC)
+		)
+
+		// Biomes
+		Registry.BIOME.forEach {
+			if (it.toString().contains(Regex("Deep.*Ocean"))) {
+				it.addFeature(
+					GenerationStep.Feature.RAW_GENERATION,
+					oceanBedOreGen.configure(DefaultFeatureConfig())
+						.createDecoratedFeature(
+							Decorator.CHANCE_HEIGHTMAP.configure(ChanceDecoratorConfig(2))
+						)
+				)
+			}
+		}
 	}
 }
