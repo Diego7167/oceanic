@@ -45,8 +45,6 @@ class PurePrismarineLantern(settings: Settings): Block(settings.lightLevel(fun(s
                     0.5f,
                     1.5f
             )
-        } else {
-            println("State: ${state.get(lit)}")
         }
 
         return ActionResult.SUCCESS
