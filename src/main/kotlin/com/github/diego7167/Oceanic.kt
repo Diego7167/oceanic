@@ -2,11 +2,11 @@ package com.github.diego7167
 
 import com.github.diego7167.blocks.PureCrystalBlock
 import com.github.diego7167.blocks.PurePrismarineLantern
-import com.github.diego7167.blocks.ShinyGravel
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
 import net.minecraft.block.Block
+import net.minecraft.block.FallingBlock
 import net.minecraft.block.Material
 import net.minecraft.item.BlockItem
 import net.minecraft.item.Item
@@ -32,10 +32,14 @@ class Oceanic: ModInitializer {
 	// Block
 	private val purePrismarineBlock = Block(FabricBlockSettings.of(Material.STONE).hardness(5.0f))
 	private val pureCrystalBlock = PureCrystalBlock(FabricBlockSettings.of(Material.METAL).hardness(4.0f))
-	private val purePrismarineLantern = PurePrismarineLantern(FabricBlockSettings.of(Material.GLASS).hardness(0.5f).lightLevel(15).sounds(BlockSoundGroup.GLASS))
+	private val purePrismarineLantern = PurePrismarineLantern(FabricBlockSettings.of(Material.GLASS)
+		.hardness(0.5f)
+		.lightLevel(15)
+		.sounds(BlockSoundGroup.GLASS)
+	)
 	// Ores should be public and companions
 	companion object Ores {
-		val shinyGravel = ShinyGravel(FabricBlockSettings.of(Material.SOIL).hardness(0.6f))
+		val shinyGravel = FallingBlock(FabricBlockSettings.of(Material.SOIL).hardness(0.6f).sounds(BlockSoundGroup.SAND))
 	}
 
 	// Init
