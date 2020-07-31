@@ -2,6 +2,7 @@ package com.github.diego7167.world
 
 import com.github.diego7167.Oceanic
 import com.mojang.serialization.Codec
+import net.minecraft.block.Blocks
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import net.minecraft.world.Heightmap
@@ -27,12 +28,17 @@ class OceanBedOreGen(config: Codec<DefaultFeatureConfig>): Feature<DefaultFeatur
 
 		val veinSize = random!!.nextInt(7) + 3 // Size of the vein
 		val dirOrder = Array(veinSize) {random.nextInt(directions.size)} // Randomize vein shape using index
-		for(i in 0 until veinSize) {
-			world.setBlockState(currentPos, Oceanic.shinyGravel.defaultState, 3)
 
-			currentPos = currentPos.offset(directions[dirOrder[i]])
+		return if(world.getBlockState(currentPos) == Blocks.GRAVEL.defaultState) {
+			for(i in 0 until veinSize) {
+				world.setBlockState(currentPos, Oceanic.shinyGravel.defaultState, 3)
+
+				currentPos = currentPos.offset(directions[dirOrder[i]])
+			}
+
+			true
+		} else {
+			false
 		}
-
-		return true
 	}
 }

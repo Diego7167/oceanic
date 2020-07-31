@@ -1,8 +1,10 @@
 package com.github.diego7167
 
+import com.github.diego7167.blocks.Pedestal
 import com.github.diego7167.blocks.PureCrystalBlock
 import com.github.diego7167.blocks.PurePrismarineLantern
 import com.github.diego7167.material.PrismaticTool
+import com.github.diego7167.tools.PrismaticPickaxe
 import com.github.diego7167.world.OceanBedOreGen
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
@@ -18,9 +20,10 @@ import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.decorator.ChanceDecoratorConfig
 import net.minecraft.world.gen.decorator.Decorator
 import net.minecraft.world.gen.feature.DefaultFeatureConfig
+import org.apache.logging.log4j.kotlin.Logging
 
 @Suppress("unused")
-class Oceanic: ModInitializer {
+class Oceanic: ModInitializer, Logging {
 	// Ores should be public and companions
 	companion object Companion {
 		// Item group
@@ -34,9 +37,12 @@ class Oceanic: ModInitializer {
 		val pureCrystal = Item(Item.Settings().group(oceanicItemGroup))
 		val pureShard = Item(Item.Settings().group(oceanicItemGroup))
 		// Tools
-		val prismaticSword = SwordItem(PrismaticTool.PRISMATIC, 3, -1.8f, Item.Settings().group(oceanicItemGroup))
+		val prismaticSword = SwordItem(PrismaticTool.PRISMATIC, 3, -2.2f, Item.Settings().group(oceanicItemGroup))
+		val prismaticShovel = ShovelItem(PrismaticTool.PRISMATIC, 1.5f, -3.0f, Item.Settings().group(oceanicItemGroup))
+		// Pickaxes, axes, and hoes are protected and need to be extended
+		val prismaticPickaxe = PrismaticPickaxe(1, -2.8f, Item.Settings().group(oceanicItemGroup))
 
-		// Block
+		// Blocks
 		val purePrismarineBlock = Block(FabricBlockSettings.of(Material.STONE).hardness(5.0f))
 		val pureCrystalBlock = PureCrystalBlock(FabricBlockSettings.of(Material.METAL).hardness(4.0f))
 		val purePrismarineLantern = PurePrismarineLantern(FabricBlockSettings.of(Material.GLASS)
@@ -45,17 +51,19 @@ class Oceanic: ModInitializer {
 			.sounds(BlockSoundGroup.GLASS)
 		)
 		val shinyGravel = FallingBlock(FabricBlockSettings.of(Material.SOIL).hardness(0.6f).sounds(BlockSoundGroup.SAND))
+		val pedestal = Pedestal(FabricBlockSettings.of(Material.STONE).hardness(2f))
 	}
 
 	// Init
 	override fun onInitialize() {
-		println("Wield the wonders of the sea")
+		logger.info("Wield the wonders of the sea")
 
 		// Register Items
 		Registry.register(Registry.ITEM, Identifier("oceanic", "pure_prismarine"), purePrismarine)
 		Registry.register(Registry.ITEM, Identifier("oceanic", "pure_crystal"), pureCrystal)
 		Registry.register(Registry.ITEM, Identifier("oceanic", "pure_shard"), pureShard)
 		Registry.register(Registry.ITEM, Identifier("oceanic", "prismatic_sword"), prismaticSword)
+		Registry.register(Registry.ITEM, Identifier("oceanic", "prismatic_pickaxe"), prismaticPickaxe)
 
 		// Register Blocks
 		Registry.register(Registry.BLOCK, Identifier("oceanic", "pure_prismarine_block"), purePrismarineBlock)
@@ -78,14 +86,17 @@ class Oceanic: ModInitializer {
 
 		// Biomes
 		Registry.BIOME.forEach {
-			if (it.toString().contains(Regex("Deep.*Ocean"))) {
-				it.addFeature(
-					GenerationStep.Feature.RAW_GENERATION,
-					oceanBedOreGen.configure(DefaultFeatureConfig())
-						.createDecoratedFeature(
-							Decorator.CHANCE_HEIGHTMAP.configure(ChanceDecoratorConfig(2))
+			if(it.toString().contains("Ocean")) {
+				if(it.toString().contains("Deep")) {
+					it.addFeature(
+						GenerationStep.Feature.RAW_GENERATION,
+						oceanBedOreGen.configure(DefaultFeatureConfig())
+							.createDecoratedFeature(
+								Decorator.CHANCE_HEIGHTMAP.configure(ChanceDecoratorConfig(2)
+							)
 						)
-				)
+					)
+				}
 			}
 		}
 	}
