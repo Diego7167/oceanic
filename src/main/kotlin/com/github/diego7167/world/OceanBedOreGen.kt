@@ -25,14 +25,11 @@ class OceanBedOreGen(config: Codec<DefaultFeatureConfig>): Feature<DefaultFeatur
 		val directions = arrayOf(Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST, Direction.DOWN)
 		var currentPos = topPos.down() // Go down into the floor
 
-		val veinSize = random!!.nextInt(7) + 3
-		println("veinSize: [$veinSize]")
-		val dirOrder = Array(veinSize) {random.nextInt(directions.size)}
-		println("dirOrder: [${dirOrder.joinToString(", ")}]")
+		val veinSize = random!!.nextInt(7) + 3 // Size of the vein
+		val dirOrder = Array(veinSize) {random.nextInt(directions.size)} // Randomize vein shape using index
 		for(i in 0 until veinSize) {
 			world.setBlockState(currentPos, Oceanic.shinyGravel.defaultState, 3)
 
-			println("index: $i")
 			currentPos = currentPos.offset(directions[dirOrder[i]])
 		}
 

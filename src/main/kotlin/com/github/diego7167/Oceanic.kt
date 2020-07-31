@@ -2,6 +2,7 @@ package com.github.diego7167
 
 import com.github.diego7167.blocks.PureCrystalBlock
 import com.github.diego7167.blocks.PurePrismarineLantern
+import com.github.diego7167.material.PrismaticTool
 import com.github.diego7167.world.OceanBedOreGen
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
@@ -9,10 +10,7 @@ import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
 import net.minecraft.block.Block
 import net.minecraft.block.FallingBlock
 import net.minecraft.block.Material
-import net.minecraft.item.BlockItem
-import net.minecraft.item.Item
-import net.minecraft.item.ItemGroup
-import net.minecraft.item.ItemStack
+import net.minecraft.item.*
 import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.util.Identifier
 import net.minecraft.util.registry.Registry
@@ -35,6 +33,8 @@ class Oceanic: ModInitializer {
 		val purePrismarine = Item(Item.Settings().group(oceanicItemGroup))
 		val pureCrystal = Item(Item.Settings().group(oceanicItemGroup))
 		val pureShard = Item(Item.Settings().group(oceanicItemGroup))
+		// Tools
+		val prismaticSword = SwordItem(PrismaticTool.PRISMATIC, 3, -1.8f, Item.Settings().group(oceanicItemGroup))
 
 		// Block
 		val purePrismarineBlock = Block(FabricBlockSettings.of(Material.STONE).hardness(5.0f))
@@ -55,6 +55,7 @@ class Oceanic: ModInitializer {
 		Registry.register(Registry.ITEM, Identifier("oceanic", "pure_prismarine"), purePrismarine)
 		Registry.register(Registry.ITEM, Identifier("oceanic", "pure_crystal"), pureCrystal)
 		Registry.register(Registry.ITEM, Identifier("oceanic", "pure_shard"), pureShard)
+		Registry.register(Registry.ITEM, Identifier("oceanic", "prismatic_sword"), prismaticSword)
 
 		// Register Blocks
 		Registry.register(Registry.BLOCK, Identifier("oceanic", "pure_prismarine_block"), purePrismarineBlock)
