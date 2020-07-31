@@ -1,5 +1,5 @@
 {
-  "variants": {
-    "": {"model":  "oceanic:block/pure_prismarine_block"}
-  }
+	"variants": {
+		"": {"model":  "oceanic:block/pure_prismarine_block"}
+	}
 }

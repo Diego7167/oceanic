@@ -1,6 +1,6 @@
 {
-  "variants": {
-    "lit=true": {"model":  "oceanic:block/pure_prismarine_lantern_lit"},
-    "lit=false": {"model":  "oceanic:block/pure_prismarine_lantern_unlit"}
-  }
+	"variants": {
+		"lit=true": {"model":  "oceanic:block/pure_prismarine_lantern_lit"},
+		"lit=false": {"model":  "oceanic:block/pure_prismarine_lantern_unlit"}
+	}
 }

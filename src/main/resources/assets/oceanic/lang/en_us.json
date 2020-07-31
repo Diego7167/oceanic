@@ -1,13 +1,13 @@
 {
-  "itemGroup.oceanic.general": "Oceanic",
+	"itemGroup.oceanic.general": "Oceanic",
 
-  "item.oceanic.pure_prismarine": "Pure prismarine",
-  "item.oceanic.pure_crystal": "Pure crystal",
-  "item.oceanic.pure_shard": "Pure shard",
-  "item.oceanic.prismatic_sword": "Prismatic sword",
+	"item.oceanic.pure_prismarine": "Pure prismarine",
+	"item.oceanic.pure_crystal": "Pure crystal",
+	"item.oceanic.pure_shard": "Pure shard",
+	"item.oceanic.prismatic_sword": "Prismatic sword",
 
-  "block.oceanic.pure_prismarine_block": "Block of pure prismarine",
-  "block.oceanic.pure_crystal_block": "Block of pure crystal",
-  "block.oceanic.pure_prismarine_lantern": "Pure prismarine lantern",
-  "block.oceanic.shiny_gravel": "Shiny gravel"
+	"block.oceanic.pure_prismarine_block": "Block of pure prismarine",
+	"block.oceanic.pure_crystal_block": "Block of pure crystal",
+	"block.oceanic.pure_prismarine_lantern": "Pure prismarine lantern",
+	"block.oceanic.shiny_gravel": "Shiny gravel"
 }

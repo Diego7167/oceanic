@@ -1,17 +1,17 @@
 {
-  "type": "minecraft:block",
-  "pools": [
-    {
-      "rolls": 1,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "oceanic:pure_prismarine_block"
-        }
-      ],
-      "conditions": [
-        {"condition": "minecraft:survives_explosion"}
-      ]
-    }
-  ]
+	"type": "minecraft:block",
+	"pools": [
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"name": "oceanic:pure_prismarine_block"
+				}
+			],
+			"conditions": [
+				{"condition": "minecraft:survives_explosion"}
+			]
+		}
+	]
 }

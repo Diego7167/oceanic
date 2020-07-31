@@ -1,34 +1,34 @@
 {
-  "schemaVersion": 1,
-  "id": "oceanic",
-  "version": "${version}",
+	"schemaVersion": 1,
+	"id": "oceanic",
+	"version": "${version}",
 
-  "name": "Oceanic",
-  "description": "Wield the wonders of the sea",
-  "authors": [
-    "Diego Sesmas",
-    "Caleb Pike"
-  ],
-  "contact": {
-    "sources": "https://github.com/Diego7167/oceanic"
-  },
+	"name": "Oceanic",
+	"description": "Wield the wonders of the sea",
+	"authors": [
+		"Diego Sesmas",
+		"Caleb Pike"
+	],
+	"contact": {
+		"sources": "https://github.com/Diego7167/oceanic"
+	},
 
-  "license": "CC0-1.0",
-  "icon": "assets/oceanic/icon.png",
+	"license": "CC0-1.0",
+	"icon": "assets/oceanic/icon.png",
 
-  "environment": "*",
-  "entrypoints": {
-    "main": [
-      "com.github.diego7167.Oceanic"
-    ]
-  },
-  "depends": {
-    "fabricloader": ">=0.8.7",
-    "fabric": "*",
-    "fabric-language-kotlin": "*",
-    "minecraft": "1.16.x"
-  },
-  "suggests": {
-    "flamingo": "*"
-  }
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.github.diego7167.Oceanic"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.8.7",
+		"fabric": "*",
+		"fabric-language-kotlin": "*",
+		"minecraft": "1.16.x"
+	},
+	"suggests": {
+		"flamingo": "*"
+	}
 }

@@ -1,6 +1,6 @@
 {
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "oceanic:block/pure_prismarine_lantern_unlit"
-  }
+	"parent": "block/cube_all",
+	"textures": {
+		"all": "oceanic:block/pure_prismarine_lantern_unlit"
+	}
 }

@@ -1,5 +1,5 @@
 {
-  "variants": {
-    "": {"model": "oceanic:block/shiny_gravel"}
-  }
+	"variants": {
+		"": {"model": "oceanic:block/shiny_gravel"}
+	}
 }

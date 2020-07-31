@@ -1,14 +1,14 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "###",
-    "###",
-    "###"
-  ],
-  "key": {
-    "#": {"item":  "oceanic:pure_shard"}
-  },
-  "result": {
-    "item": "oceanic:pure_crystal"
-  }
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"###",
+		"###",
+		"###"
+	],
+	"key": {
+		"#": {"item":  "oceanic:pure_shard"}
+	},
+	"result": {
+		"item": "oceanic:pure_crystal"
+	}
 }

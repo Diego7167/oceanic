@@ -1,15 +1,15 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "PPP",
-    "PSP",
-    "PPP"
-  ],
-  "key": {
-    "P": {"item": "oceanic:pure_prismarine"},
-    "S": {"item":  "minecraft:sea_lantern"}
-  },
-  "result": {
-    "item": "oceanic:pure_prismarine_lantern"
-  }
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"PPP",
+		"PSP",
+		"PPP"
+	],
+	"key": {
+		"P": {"item": "oceanic:pure_prismarine"},
+		"S": {"item":  "minecraft:sea_lantern"}
+	},
+	"result": {
+		"item": "oceanic:pure_prismarine_lantern"
+	}
 }
