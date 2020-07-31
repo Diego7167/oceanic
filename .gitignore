@@ -15,3 +15,7 @@ out/
 
 run/
 minecraft/
+
+# GIMP
+
+*.xcf
