@@ -8,7 +8,7 @@ My friend Caleb and I are working on this for development experience and for fun
 - [x] Base item (Pure prismarine)
 - [x] Cool blocks
 - [x] Generating ores
-- [ ] Nice tools
+- [x] Nice tools
 - [ ] Nice armour
 - [ ] Cool dungeons
 - [ ] A status effect that inhibits motion in water (possibly called aquaphobia?)
