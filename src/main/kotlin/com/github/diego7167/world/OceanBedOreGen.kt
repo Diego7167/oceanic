@@ -6,8 +6,7 @@ import net.minecraft.block.Blocks
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import net.minecraft.world.Heightmap
-import net.minecraft.world.ServerWorldAccess
-import net.minecraft.world.gen.StructureAccessor
+import net.minecraft.world.StructureWorldAccess
 import net.minecraft.world.gen.chunk.ChunkGenerator
 import net.minecraft.world.gen.feature.DefaultFeatureConfig
 import net.minecraft.world.gen.feature.Feature
@@ -15,8 +14,7 @@ import java.util.*
 
 class OceanBedOreGen(config: Codec<DefaultFeatureConfig>): Feature<DefaultFeatureConfig>(config) {
 	override fun generate(
-		world: ServerWorldAccess?,
-		structureAccessor: StructureAccessor?,
+		world: StructureWorldAccess?,
 		generator: ChunkGenerator?,
 		random: Random?,
 		pos: BlockPos?,

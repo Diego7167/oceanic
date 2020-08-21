@@ -19,7 +19,10 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.github.diego7167.Oceanic"
+			{
+				"adapter": "kotlin",
+				"value": "com.github.diego7167.Oceanic"
+			}
 		]
 	},
 	"depends": {
