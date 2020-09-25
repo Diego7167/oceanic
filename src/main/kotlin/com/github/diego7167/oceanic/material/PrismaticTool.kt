@@ -1,6 +1,6 @@
-package com.github.diego7167.material
+package com.github.diego7167.oceanic.material
 
-import com.github.diego7167.Oceanic
+import com.github.diego7167.oceanic.Oceanic
 import net.minecraft.item.ToolMaterial
 import net.minecraft.recipe.Ingredient
 import net.minecraft.util.Lazy

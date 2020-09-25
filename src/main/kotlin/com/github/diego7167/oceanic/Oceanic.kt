@@ -1,12 +1,12 @@
-package com.github.diego7167
+package com.github.diego7167.oceanic
 
-import com.github.diego7167.blocks.PureCrystalBlock
-import com.github.diego7167.blocks.PurePrismarineLantern
-import com.github.diego7167.material.PrismaticTool
-import com.github.diego7167.tools.PrismaticAxe
-import com.github.diego7167.tools.PrismaticHoe
-import com.github.diego7167.tools.PrismaticPickaxe
-import com.github.diego7167.world.OceanBedOreGen
+import com.github.diego7167.oceanic.blocks.PureCrystalBlock
+import com.github.diego7167.oceanic.blocks.PurePrismarineLantern
+import com.github.diego7167.oceanic.material.PrismaticTool
+import com.github.diego7167.oceanic.tools.PrismaticAxe
+import com.github.diego7167.oceanic.tools.PrismaticHoe
+import com.github.diego7167.oceanic.tools.PrismaticPickaxe
+import com.github.diego7167.oceanic.world.OceanBedOreGen
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
@@ -17,8 +17,12 @@ import net.minecraft.block.Material
 import net.minecraft.item.*
 import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.util.Identifier
+import net.minecraft.util.registry.BuiltinRegistries
 import net.minecraft.util.registry.Registry
-import net.minecraft.world.gen.feature.DefaultFeatureConfig
+import net.minecraft.world.gen.decorator.ChanceDecoratorConfig
+import net.minecraft.world.gen.decorator.Decorator
+import net.minecraft.world.gen.decorator.RangeDecoratorConfig
+import net.minecraft.world.gen.feature.*
 import org.apache.logging.log4j.LogManager
 
 @Suppress("unused")
@@ -38,8 +42,7 @@ class Oceanic: ModInitializer {
 			.sounds(BlockSoundGroup.GRAVEL)
 			.breakByTool(FabricToolTags.SHOVELS)
 		private val stoneLike: FabricBlockSettings = FabricBlockSettings.of(Material.STONE)
-			.hardness(.6f)
-			.resistance(6f)
+			.hardness(1.5f)
 			.breakByTool(FabricToolTags.PICKAXES, 0)
 
 		// Items
@@ -55,6 +58,7 @@ class Oceanic: ModInitializer {
 		val prismaticHoe = PrismaticHoe(7, -3.2f, Item.Settings().group(oceanicItemGroup))
 
 		// Blocks
+		// Crafted
 		val purePrismarineBlock = Block(stoneLike)
 		val pureCrystalBlock = PureCrystalBlock(stoneLike.hardness(5f).breakByTool(FabricToolTags.PICKAXES, 2))
 		val purePrismarineLantern = PurePrismarineLantern(FabricBlockSettings.of(Material.GLASS)
@@ -63,7 +67,14 @@ class Oceanic: ModInitializer {
 			.sounds(BlockSoundGroup.GLASS)
 			.breakByTool(FabricToolTags.PICKAXES)
 		)
+		// Natural
 		val shinyGravel = FallingBlock(gravelLike)
+		val deepStone = Block(stoneLike)
+
+		// Features
+		val oceanBedOreGen = OceanBedOreGen(DefaultFeatureConfig.CODEC)
+		val oceanBedOreGenConf = oceanBedOreGen.configure(FeatureConfig.DEFAULT)
+			.decorate(Decorator.CHANCE.configure(ChanceDecoratorConfig(10)))
 	}
 
 	// Init
@@ -86,22 +97,29 @@ class Oceanic: ModInitializer {
 		Registry.register(Registry.BLOCK, Identifier("oceanic", "pure_crystal_block"), pureCrystalBlock)
 		Registry.register(Registry.BLOCK, Identifier("oceanic", "pure_prismarine_lantern"), purePrismarineLantern)
 		Registry.register(Registry.BLOCK, Identifier("oceanic", "shiny_gravel"), shinyGravel)
+		Registry.register(Registry.BLOCK, Identifier("oceanic", "deep_stone"), deepStone)
 		// And ItemBlocks
-		Registry.register(Registry.ITEM, Identifier("oceanic", "pure_prismarine_block"), BlockItem(purePrismarineBlock, Item.Settings().group(oceanicItemGroup)))
-		Registry.register(Registry.ITEM, Identifier("oceanic", "pure_crystal_block"), BlockItem(pureCrystalBlock, Item.Settings().group(oceanicItemGroup)))
-		Registry.register(Registry.ITEM, Identifier("oceanic", "pure_prismarine_lantern"), BlockItem(purePrismarineLantern, Item.Settings().group(oceanicItemGroup)))
-		Registry.register(Registry.ITEM, Identifier("oceanic", "shiny_gravel"), BlockItem(shinyGravel, Item.Settings().group(oceanicItemGroup)))
+		Registry.register(Registry.ITEM, Identifier("oceanic", "pure_prismarine_block"), BlockItem(
+			purePrismarineBlock, Item.Settings().group(
+				oceanicItemGroup
+			)))
+		Registry.register(Registry.ITEM, Identifier("oceanic", "pure_crystal_block"), BlockItem(
+			pureCrystalBlock, Item.Settings().group(
+				oceanicItemGroup
+			)))
+		Registry.register(Registry.ITEM, Identifier("oceanic", "pure_prismarine_lantern"), BlockItem(
+			purePrismarineLantern, Item.Settings().group(oceanicItemGroup)))
+		Registry.register(Registry.ITEM, Identifier("oceanic", "shiny_gravel"), BlockItem(
+			shinyGravel, Item.Settings().group(
+				oceanicItemGroup
+			)))
+		Registry.register(Registry.ITEM, Identifier("oceanic", "deep_stone"), BlockItem(
+			deepStone, Item.Settings().group(
+				oceanicItemGroup
+			)))
 
-		// World gen
 		// Features
-		@Suppress("unused_variable")
-		val oceanBedOreGen = Registry.register(
-			Registry.FEATURE,
-			Identifier("oceanic", "ocean_bed_ore_gen"),
-			OceanBedOreGen(DefaultFeatureConfig.CODEC)
-		)
-
-		// Biomes
-		// Biomes changed in 1.16.2 so I will wait on this feature
+		Registry.register(Registry.FEATURE, Identifier("oceanic", "ocean_bed_ore_gen"), oceanBedOreGen)
+		Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, Identifier("oceanic", "ocean_bed_ore_gen"), oceanBedOreGenConf)
 	}
 }

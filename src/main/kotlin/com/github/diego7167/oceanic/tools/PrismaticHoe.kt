@@ -1,6 +1,6 @@
-package com.github.diego7167.tools
+package com.github.diego7167.oceanic.tools
 
-import com.github.diego7167.material.PrismaticTool
+import com.github.diego7167.oceanic.material.PrismaticTool
 import net.minecraft.item.HoeItem
 
 class PrismaticHoe(

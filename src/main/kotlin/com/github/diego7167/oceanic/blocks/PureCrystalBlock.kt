@@ -1,4 +1,4 @@
-package com.github.diego7167.blocks
+package com.github.diego7167.oceanic.blocks
 
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState

@@ -21,10 +21,13 @@
 		"main": [
 			{
 				"adapter": "kotlin",
-				"value": "com.github.diego7167.Oceanic"
+				"value": "com.github.diego7167.oceanic.Oceanic"
 			}
 		]
 	},
+	"mixins": [
+		"oceanic.mixins.json"
+	],
 	"depends": {
 		"fabricloader": ">=0.8.7",
 		"fabric": "*",

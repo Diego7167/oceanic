@@ -1,4 +1,4 @@
-package com.github.diego7167.blocks
+package com.github.diego7167.oceanic.blocks
 
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
@@ -13,7 +13,7 @@ import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
-class PurePrismarineLantern(settings: Settings): Block(settings.lightLevel(fun(state): Int = if(state.get(this.lit)) {15} else {0})) { // This part controls the light
+class PurePrismarineLantern(settings: Settings): Block(settings.luminance(fun(state): Int = if(state.get(lit)) {15} else {0})) { // This part controls the light
 	// Block state
 	companion object Companion {
 		val lit: BooleanProperty = BooleanProperty.of("lit")
