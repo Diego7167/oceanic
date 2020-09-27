@@ -30,12 +30,10 @@ class OceanBedOreGen(config: Codec<DefaultFeatureConfig>): Feature<DefaultFeatur
 
 		for(i in 0 until veinSize) {
 			if(world.getBlockState(currentPos) == Blocks.GRAVEL.defaultState || world.getBlockState(currentPos) == Oceanic.shinyGravel.defaultState) {
-				println("Successful at ${currentPos.x} ${currentPos.y} ${currentPos.z}")
 				world.setBlockState(currentPos, Oceanic.shinyGravel.defaultState, 3)
 
 				currentPos = currentPos.offset(directions[dirOrder[i]])
 			} else {
-				println("Failed at ${currentPos.x} ${currentPos.y} ${currentPos.z}")
 				return false
 			}
 		}
