@@ -6,6 +6,7 @@ import com.github.diego7167.oceanic.material.PrismaticTool
 import com.github.diego7167.oceanic.tools.PrismaticAxe
 import com.github.diego7167.oceanic.tools.PrismaticHoe
 import com.github.diego7167.oceanic.tools.PrismaticPickaxe
+import com.github.diego7167.oceanic.world.DeepStoneGen
 import com.github.diego7167.oceanic.world.OceanBedOreGen
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
@@ -73,8 +74,11 @@ class Oceanic: ModInitializer {
 
 		// Features
 		val oceanBedOreGen = OceanBedOreGen(DefaultFeatureConfig.CODEC)
-		val oceanBedOreGenConf = oceanBedOreGen.configure(FeatureConfig.DEFAULT)
+		val oceanBedOreGenConf: ConfiguredFeature<*, *> = oceanBedOreGen.configure(FeatureConfig.DEFAULT)
 			.decorate(Decorator.CHANCE.configure(ChanceDecoratorConfig(10)))
+		val deepStoneGen = DeepStoneGen(DefaultFeatureConfig.CODEC)
+		val deepStoneGenConf: ConfiguredFeature<*, *> = deepStoneGen.configure(FeatureConfig.DEFAULT)
+			.decorate(Decorator.CHANCE.configure(ChanceDecoratorConfig(5)))
 	}
 
 	// Init
@@ -120,6 +124,9 @@ class Oceanic: ModInitializer {
 
 		// Features
 		Registry.register(Registry.FEATURE, Identifier("oceanic", "ocean_bed_ore_gen"), oceanBedOreGen)
+		Registry.register(Registry.FEATURE, Identifier("oceanic", "deep_stone_gen"), deepStoneGen)
+		// Configured features
 		Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, Identifier("oceanic", "ocean_bed_ore_gen"), oceanBedOreGenConf)
+		Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, Identifier("oceanic", "deep_stone_gen"), deepStoneGenConf)
 	}
 }

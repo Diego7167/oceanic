@@ -1,6 +1,7 @@
 package com.github.diego7167.oceanic.world
 
 import com.github.diego7167.oceanic.Oceanic
+import com.github.diego7167.oceanic.util.Util
 import com.mojang.serialization.Codec
 import net.minecraft.block.Blocks
 import net.minecraft.util.math.BlockPos
@@ -20,25 +21,24 @@ class OceanBedOreGen(config: Codec<DefaultFeatureConfig>): Feature<DefaultFeatur
 		pos: BlockPos?,
 		config: DefaultFeatureConfig?
 	): Boolean {
-		val topPos = world!!.getTopPosition(Heightmap.Type.OCEAN_FLOOR_WG, pos)
-		val directions = arrayOf(Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST, Direction.DOWN)
-		var currentPos = topPos.down(1) // Go down into the floor
+		val directions = arrayOf(Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST)
+		val randPos = Util.randChunkPos(pos!!.down(), random!!)
+		var currentPos = world!!.getTopPosition(Heightmap.Type.OCEAN_FLOOR_WG, randPos).down()
 
-		val veinSize = random!!.nextInt(7) + 3 // Size of the vein (3 is minimum)
+		val veinSize = random.nextInt(7) + 3 // Size of the vein (3 is minimum)
 		val dirOrder = Array(veinSize) {random.nextInt(directions.size)} // Randomize vein shape using index
 
-		println(world.getBlockState(currentPos))
-		return if(world.getBlockState(currentPos) == Blocks.GRAVEL.defaultState) {
-			for(i in 0 until veinSize) {
+		for(i in 0 until veinSize) {
+			if(world.getBlockState(currentPos) == Blocks.GRAVEL.defaultState || world.getBlockState(currentPos) == Oceanic.shinyGravel.defaultState) {
+				println("Successful at ${currentPos.x} ${currentPos.y} ${currentPos.z}")
 				world.setBlockState(currentPos, Oceanic.shinyGravel.defaultState, 3)
-				println("Generated block at $currentPos")
 
 				currentPos = currentPos.offset(directions[dirOrder[i]])
+			} else {
+				println("Failed at ${currentPos.x} ${currentPos.y} ${currentPos.z}")
+				return false
 			}
-
-			true
-		} else {
-			false
 		}
+		return true
 	}
 }

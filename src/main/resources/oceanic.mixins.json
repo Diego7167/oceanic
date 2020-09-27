@@ -1,9 +1,9 @@
 {
-  "required": "true",
+  "required": true,
   "package": "com.github.diego7167.oceanic.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "OceanicOreMixin"
+    "SeaGenMixin"
   ],
   "injectors": {
     "defaultRequire": 1
