@@ -142,7 +142,7 @@ class Oceanic: ModInitializer {
 
 		// Add curio functionality
 		ItemComponentCallbackV2.event(tideRing).register(
-			ItemComponentCallbackV2 { item, itemStack, componentContainer ->
+			ItemComponentCallbackV2 { _, _, componentContainer ->
 				componentContainer[CuriosComponent.ITEM] = object : ICurio {
 					override fun canRightClickEquip(): Boolean {
 						return true
