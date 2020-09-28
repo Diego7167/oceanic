@@ -50,7 +50,6 @@ object Util {
 		for(line in pattern) { // Get rows
 			var col = row // Copy x position
 			for(char in line.split("")) { // Get each character
-				println("${world.getBlockState(col.up())} / ${world.getBlockState(col)} at ${pos}")
 				if(char == "#"
 					&& (world.getBlockState(col.up()) == Blocks.WATER.defaultState	// Generate if is under water
 					|| !world.getBlockState(col.up()).isOpaque)						// Or translucent block
