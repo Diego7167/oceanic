@@ -2,12 +2,14 @@ package com.github.diego7167.oceanic
 
 import com.github.diego7167.oceanic.blocks.PureCrystalBlock
 import com.github.diego7167.oceanic.blocks.PurePrismarineLantern
+import com.github.diego7167.oceanic.items.TideRing
 import com.github.diego7167.oceanic.material.PrismaticTool
 import com.github.diego7167.oceanic.tools.PrismaticAxe
 import com.github.diego7167.oceanic.tools.PrismaticHoe
 import com.github.diego7167.oceanic.tools.PrismaticPickaxe
 import com.github.diego7167.oceanic.world.DeepStoneGen
 import com.github.diego7167.oceanic.world.OceanBedOreGen
+import nerdhub.cardinal.components.api.event.ItemComponentCallbackV2
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
@@ -22,9 +24,13 @@ import net.minecraft.util.registry.BuiltinRegistries
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.gen.decorator.ChanceDecoratorConfig
 import net.minecraft.world.gen.decorator.Decorator
-import net.minecraft.world.gen.decorator.RangeDecoratorConfig
 import net.minecraft.world.gen.feature.*
 import org.apache.logging.log4j.LogManager
+import top.theillusivec4.curios.api.CuriosApi
+import top.theillusivec4.curios.api.CuriosComponent
+import top.theillusivec4.curios.api.SlotTypeInfo
+import top.theillusivec4.curios.api.SlotTypePreset
+import top.theillusivec4.curios.api.type.component.ICurio
 
 @Suppress("unused")
 class Oceanic: ModInitializer {
@@ -50,6 +56,7 @@ class Oceanic: ModInitializer {
 		val purePrismarine = Item(Item.Settings().group(oceanicItemGroup))
 		val pureCrystal = Item(Item.Settings().group(oceanicItemGroup))
 		val pureShard = Item(Item.Settings().group(oceanicItemGroup))
+		val tideRing = TideRing(Item.Settings().maxCount(1).group(oceanicItemGroup))
 		// Tools
 		val prismaticSword = SwordItem(PrismaticTool.PRISMATIC, 3, -2.2f, Item.Settings().group(oceanicItemGroup))
 		val prismaticShovel = ShovelItem(PrismaticTool.PRISMATIC, 1.5f, -3.0f, Item.Settings().group(oceanicItemGroup))
@@ -89,6 +96,7 @@ class Oceanic: ModInitializer {
 		Registry.register(Registry.ITEM, Identifier("oceanic", "pure_prismarine"), purePrismarine)
 		Registry.register(Registry.ITEM, Identifier("oceanic", "pure_crystal"), pureCrystal)
 		Registry.register(Registry.ITEM, Identifier("oceanic", "pure_shard"), pureShard)
+		Registry.register(Registry.ITEM, Identifier("oceanic", "tide_ring"), tideRing)
 		// Tools
 		Registry.register(Registry.ITEM, Identifier("oceanic", "prismatic_sword"), prismaticSword)
 		Registry.register(Registry.ITEM, Identifier("oceanic", "prismatic_pickaxe"), prismaticPickaxe)
@@ -128,5 +136,19 @@ class Oceanic: ModInitializer {
 		// Configured features
 		Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, Identifier("oceanic", "ocean_bed_ore_gen"), oceanBedOreGenConf)
 		Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, Identifier("oceanic", "deep_stone_gen"), deepStoneGenConf)
+
+		// Register curios
+		CuriosApi.enqueueSlotType(SlotTypeInfo.BuildScheme.REGISTER, SlotTypePreset.RING.infoBuilder.build()) // Rings
+
+		// Add curio functionality
+		ItemComponentCallbackV2.event(tideRing).register(
+			ItemComponentCallbackV2 { item, itemStack, componentContainer ->
+				componentContainer[CuriosComponent.ITEM] = object : ICurio {
+					override fun canRightClickEquip(): Boolean {
+						return true
+					}
+				}
+			}
+		)
 	}
 }

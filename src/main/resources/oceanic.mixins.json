@@ -3,7 +3,8 @@
   "package": "com.github.diego7167.oceanic.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "SeaGenMixin"
+    "SeaGenMixin",
+    "TideRingMixin"
   ],
   "injectors": {
     "defaultRequire": 1

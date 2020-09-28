@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " G ",
+    "D D",
+    " D "
+  ],
+  "key": {
+    "G": {"item": "oceanic:pure_crystal"},
+    "D": {"item": "oceanic:deep_stone"}
+  },
+  "result": {
+    "item": "oceanic:tide_ring"
+  }
+}
