@@ -29,11 +29,9 @@ class DeepStoneGen(config: Codec<DefaultFeatureConfig>): Feature<DefaultFeatureC
 		val randPos = Util.randChunkPos(pos!!, random!!)
 		val currentPos = world!!.getTopPosition(Heightmap.Type.OCEAN_FLOOR_WG, randPos).down()
 
-		setStone(currentPos, world)
-		setStone(currentPos.north(), world)
-		setStone(currentPos.south(), world)
-		setStone(currentPos.east(), world)
-		setStone(currentPos.west(), world)
+		// Shiny new automation
+		println("Deepstone at ${currentPos.x} ${currentPos.y} ${currentPos.z}")
+		Util.genDeepstoneCircle(currentPos, world, random)
 
 		return true
 	}

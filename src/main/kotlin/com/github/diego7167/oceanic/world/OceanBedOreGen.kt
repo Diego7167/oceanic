@@ -25,7 +25,7 @@ class OceanBedOreGen(config: Codec<DefaultFeatureConfig>): Feature<DefaultFeatur
 		val randPos = Util.randChunkPos(pos!!.down(), random!!)
 		var currentPos = world!!.getTopPosition(Heightmap.Type.OCEAN_FLOOR_WG, randPos).down()
 
-		val veinSize = random.nextInt(7) + 3 // Size of the vein (3 is minimum)
+		val veinSize = random.nextInt(8) + 3 // Size of the vein (3 is min, 10 is max)
 		val dirOrder = Array(veinSize) {random.nextInt(directions.size)} // Randomize vein shape using index
 
 		for(i in 0 until veinSize) {
