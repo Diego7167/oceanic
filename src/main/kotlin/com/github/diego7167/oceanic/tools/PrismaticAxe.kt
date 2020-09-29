@@ -1,15 +1,14 @@
 package com.github.diego7167.oceanic.tools
 
-import com.github.diego7167.oceanic.material.PrismaticTool
+import com.github.diego7167.oceanic.material.OceanicToolMaterial
 import net.minecraft.item.AxeItem
-import net.minecraft.item.ToolMaterial
 
 class PrismaticAxe(
     attackDamage: Float,
     attackSpeed: Float,
     settings: Settings
 ): AxeItem(
-    PrismaticTool.PRISMATIC,
+    OceanicToolMaterial.PRISMATIC,
     attackDamage,
     attackSpeed,
     settings

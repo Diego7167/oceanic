@@ -6,7 +6,7 @@ import net.minecraft.recipe.Ingredient
 import net.minecraft.util.Lazy
 import java.util.function.Supplier
 
-enum class PrismaticTool(
+enum class OceanicToolMaterial(
 	private val itemMiningLevel: Int,
 	private val itemDurability: Int,
 	private val itemMiningSpeedMultiplier: Float,

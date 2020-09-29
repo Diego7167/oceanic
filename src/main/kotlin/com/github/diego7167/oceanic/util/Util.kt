@@ -1,11 +1,19 @@
 package com.github.diego7167.oceanic.util
 
 import com.github.diego7167.oceanic.Oceanic
+import net.minecraft.block.Blocks
+import net.minecraft.text.Text
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.StructureWorldAccess
 import java.util.*
 
 object Util {
+	fun multilineTooltip(string: String, tooltip: MutableList<Text>) {
+		for(line in string.split("\n")) {
+			tooltip.add(Text.of(line))
+		}
+	}
+
 	fun randChunkPos(pos: BlockPos, random: Random): BlockPos {
 		val randomX = random.nextInt(16)
 		val randomY = random.nextInt(16)
@@ -50,11 +58,13 @@ object Util {
 			var col = row // Copy x position
 			for(char in line.split("")) { // Get each character
 				if(char == "#"
-					&& !world.getBlockState(col.up()).isOpaque						// Or translucent block
+					&& (world.getBlockState(col.up()) != Blocks.AIR.defaultState	// Is not under air
+					|| !world.getBlockState(col.up()).isOpaque)						// Or translucent block
 					&& world.getBlockState(col).isOpaque							// Is on an opaque block
-					&& world.getBlockState(col.down()).isOpaque						// And is not above a translucent block (Water, kelp, etc.)
+					&& world.getBlockState(col.down()) != Blocks.WATER.defaultState// Is not above a water block
+					&& world.getBlockState(col.down()).isOpaque						// And is not above a translucent block (Kelp, sea grass, etc.)
 				) {
-					world.setBlockState(col, Oceanic.deepStone.defaultState, 3)
+					world.setBlockState(col, Oceanic.deepstone.defaultState, 3)
 				}
 				col = col.west()
 			}

@@ -16,15 +16,10 @@ import top.theillusivec4.curios.api.CuriosApi;
 public class TideRingMixin {
     @Inject(method = "hasAquaAffinity", at = @At("HEAD"), cancellable = true)
     private static void hasAquaAffinity(LivingEntity entity, CallbackInfoReturnable<Boolean> cir) {
-        if(EnchantmentHelper.getEquipmentLevel(Enchantments.AQUA_AFFINITY, entity) > 0) { // If player has armor
-            cir.setReturnValue(true);
-            System.out.println("Wearing armor");
-        } else { // If not check curios
-            ItemStack stack = CuriosApi.getCuriosHelper()
-                    .findEquippedCurio(Oceanic.Companion.getTideRing(), entity).map(ImmutableTriple::getRight) // Not really sure what this means
-                    .orElse(ItemStack.EMPTY);
-
-            System.out.println("Checking for curio");
+        ItemStack stack = CuriosApi.getCuriosHelper()
+            .findEquippedCurio(Oceanic.Companion.getTideRing(), entity).map(ImmutableTriple::getRight) // Not really sure what this means
+            .orElse(ItemStack.EMPTY);
+        if(!stack.isEmpty()) {
             cir.setReturnValue(!stack.isEmpty());
         }
     }

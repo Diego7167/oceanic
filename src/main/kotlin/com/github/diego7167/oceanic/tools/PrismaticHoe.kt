@@ -1,6 +1,6 @@
 package com.github.diego7167.oceanic.tools
 
-import com.github.diego7167.oceanic.material.PrismaticTool
+import com.github.diego7167.oceanic.material.OceanicToolMaterial
 import net.minecraft.item.HoeItem
 
 class PrismaticHoe(
@@ -8,7 +8,7 @@ class PrismaticHoe(
     attackSpeed: Float,
     settings: Settings
 ): HoeItem(
-    PrismaticTool.PRISMATIC,
+    OceanicToolMaterial.PRISMATIC,
     attackDamage,
     attackSpeed,
     settings

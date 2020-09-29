@@ -3,7 +3,7 @@ package com.github.diego7167.oceanic
 import com.github.diego7167.oceanic.blocks.PureCrystalBlock
 import com.github.diego7167.oceanic.blocks.PurePrismarineLantern
 import com.github.diego7167.oceanic.items.TideRing
-import com.github.diego7167.oceanic.material.PrismaticTool
+import com.github.diego7167.oceanic.material.OceanicToolMaterial
 import com.github.diego7167.oceanic.tools.PrismaticAxe
 import com.github.diego7167.oceanic.tools.PrismaticHoe
 import com.github.diego7167.oceanic.tools.PrismaticPickaxe
@@ -56,10 +56,11 @@ class Oceanic: ModInitializer {
 		val purePrismarine = Item(Item.Settings().group(oceanicItemGroup))
 		val pureCrystal = Item(Item.Settings().group(oceanicItemGroup))
 		val pureShard = Item(Item.Settings().group(oceanicItemGroup))
+		val abyss_eye = Item(Item.Settings().group(oceanicItemGroup))
 		val tideRing = TideRing(Item.Settings().maxCount(1).group(oceanicItemGroup))
 		// Tools
-		val prismaticSword = SwordItem(PrismaticTool.PRISMATIC, 3, -2.2f, Item.Settings().group(oceanicItemGroup))
-		val prismaticShovel = ShovelItem(PrismaticTool.PRISMATIC, 1.5f, -3.0f, Item.Settings().group(oceanicItemGroup))
+		val prismaticSword = SwordItem(OceanicToolMaterial.PRISMATIC, 3, -2.2f, Item.Settings().group(oceanicItemGroup))
+		val prismaticShovel = ShovelItem(OceanicToolMaterial.PRISMATIC, 1.5f, -3.0f, Item.Settings().group(oceanicItemGroup))
 		// Pickaxes, axes, and hoes are protected and need to be extended
 		val prismaticPickaxe = PrismaticPickaxe(1, -2.8f, Item.Settings().group(oceanicItemGroup))
 		val prismaticAxe = PrismaticAxe(7f, -3.2f, Item.Settings().group(oceanicItemGroup))
@@ -77,14 +78,14 @@ class Oceanic: ModInitializer {
 		)
 		// Natural
 		val shinyGravel = FallingBlock(gravelLike)
-		val deepStone = Block(stoneLike)
+		val deepstone = Block(stoneLike)
 
 		// Features
 		val oceanBedOreGen = OceanBedOreGen(DefaultFeatureConfig.CODEC)
 		val oceanBedOreGenConf: ConfiguredFeature<*, *> = oceanBedOreGen.configure(FeatureConfig.DEFAULT)
 			.decorate(Decorator.CHANCE.configure(ChanceDecoratorConfig(10)))
-		val deepStoneGen = DeepStoneGen(DefaultFeatureConfig.CODEC)
-		val deepStoneGenConf: ConfiguredFeature<*, *> = deepStoneGen.configure(FeatureConfig.DEFAULT)
+		val deepstoneGen = DeepStoneGen(DefaultFeatureConfig.CODEC)
+		val deepstoneGenConf: ConfiguredFeature<*, *> = deepstoneGen.configure(FeatureConfig.DEFAULT)
 			.decorate(Decorator.CHANCE.configure(ChanceDecoratorConfig(5)))
 	}
 
@@ -96,6 +97,7 @@ class Oceanic: ModInitializer {
 		Registry.register(Registry.ITEM, Identifier("oceanic", "pure_prismarine"), purePrismarine)
 		Registry.register(Registry.ITEM, Identifier("oceanic", "pure_crystal"), pureCrystal)
 		Registry.register(Registry.ITEM, Identifier("oceanic", "pure_shard"), pureShard)
+		Registry.register(Registry.ITEM, Identifier("oceanic", "abyss_eye"), abyss_eye)
 		Registry.register(Registry.ITEM, Identifier("oceanic", "tide_ring"), tideRing)
 		// Tools
 		Registry.register(Registry.ITEM, Identifier("oceanic", "prismatic_sword"), prismaticSword)
@@ -109,7 +111,7 @@ class Oceanic: ModInitializer {
 		Registry.register(Registry.BLOCK, Identifier("oceanic", "pure_crystal_block"), pureCrystalBlock)
 		Registry.register(Registry.BLOCK, Identifier("oceanic", "pure_prismarine_lantern"), purePrismarineLantern)
 		Registry.register(Registry.BLOCK, Identifier("oceanic", "shiny_gravel"), shinyGravel)
-		Registry.register(Registry.BLOCK, Identifier("oceanic", "deep_stone"), deepStone)
+		Registry.register(Registry.BLOCK, Identifier("oceanic", "deepstone"), deepstone)
 		// And ItemBlocks
 		Registry.register(Registry.ITEM, Identifier("oceanic", "pure_prismarine_block"), BlockItem(
 			purePrismarineBlock, Item.Settings().group(
@@ -125,17 +127,17 @@ class Oceanic: ModInitializer {
 			shinyGravel, Item.Settings().group(
 				oceanicItemGroup
 			)))
-		Registry.register(Registry.ITEM, Identifier("oceanic", "deep_stone"), BlockItem(
-			deepStone, Item.Settings().group(
+		Registry.register(Registry.ITEM, Identifier("oceanic", "deepstone"), BlockItem(
+			deepstone, Item.Settings().group(
 				oceanicItemGroup
 			)))
 
 		// Features
 		Registry.register(Registry.FEATURE, Identifier("oceanic", "ocean_bed_ore_gen"), oceanBedOreGen)
-		Registry.register(Registry.FEATURE, Identifier("oceanic", "deep_stone_gen"), deepStoneGen)
+		Registry.register(Registry.FEATURE, Identifier("oceanic", "deep_stone_gen"), deepstoneGen)
 		// Configured features
 		Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, Identifier("oceanic", "ocean_bed_ore_gen"), oceanBedOreGenConf)
-		Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, Identifier("oceanic", "deep_stone_gen"), deepStoneGenConf)
+		Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, Identifier("oceanic", "deep_stone_gen"), deepstoneGenConf)
 
 		// Register curios
 		CuriosApi.enqueueSlotType(SlotTypeInfo.BuildScheme.REGISTER, SlotTypePreset.RING.infoBuilder.build()) // Rings

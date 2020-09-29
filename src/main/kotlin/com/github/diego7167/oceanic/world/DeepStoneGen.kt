@@ -22,7 +22,7 @@ class DeepStoneGen(config: Codec<DefaultFeatureConfig>): Feature<DefaultFeatureC
 	): Boolean {
 		fun setStone(pos: BlockPos, world: StructureWorldAccess) {
 			if(world.getBlockState(pos) != Blocks.WATER.defaultState) {
-				world.setBlockState(pos, Oceanic.deepStone.defaultState, 3)
+				world.setBlockState(pos, Oceanic.deepstone.defaultState, 3)
 			}
 		}
 
@@ -30,7 +30,6 @@ class DeepStoneGen(config: Codec<DefaultFeatureConfig>): Feature<DefaultFeatureC
 		val currentPos = world!!.getTopPosition(Heightmap.Type.OCEAN_FLOOR_WG, randPos).down()
 
 		// Shiny new automation
-		println("Deepstone at ${currentPos.x} ${currentPos.y} ${currentPos.z}")
 		Util.genDeepstoneCircle(currentPos, world, random)
 
 		return true

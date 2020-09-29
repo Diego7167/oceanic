@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class SeaGenMixin {
     @Inject(method = "addOceanStructures(Lnet/minecraft/world/biome/GenerationSettings$Builder;)V", at = @At("TAIL"))
     private static void addOceanStructures(GenerationSettings.Builder builder, CallbackInfo ci) {
-        builder.feature(GenerationStep.Feature.UNDERGROUND_ORES, Oceanic.Companion.getDeepStoneGenConf());
+        builder.feature(GenerationStep.Feature.UNDERGROUND_ORES, Oceanic.Companion.getDeepstoneGenConf());
         builder.feature(GenerationStep.Feature.UNDERGROUND_ORES, Oceanic.Companion.getOceanBedOreGenConf());
     }
 }

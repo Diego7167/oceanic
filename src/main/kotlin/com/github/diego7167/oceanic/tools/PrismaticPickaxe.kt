@@ -1,6 +1,6 @@
 package com.github.diego7167.oceanic.tools
 
-import com.github.diego7167.oceanic.material.PrismaticTool
+import com.github.diego7167.oceanic.material.OceanicToolMaterial
 import net.minecraft.item.PickaxeItem
 
 class PrismaticPickaxe(
@@ -8,7 +8,7 @@ class PrismaticPickaxe(
 		attackSpeed: Float,
 		settings: Settings
 ): PickaxeItem(
-		PrismaticTool.PRISMATIC,
+		OceanicToolMaterial.PRISMATIC,
 		attackDamage,
 		attackSpeed,
 		settings
